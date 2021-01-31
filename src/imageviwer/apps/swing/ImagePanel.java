@@ -29,13 +29,15 @@ public class ImagePanel extends JPanel implements ImageDisplay{
     
     @Override
     public void paint(Graphics g) {
+        g.clearRect(0, 0, this.getWidth(), this.getHeight());
         BufferedImage image = load(this.image.getName());
         Box box = new Box(image);
-        g.drawImage(image, box.x, box.y, box.width, box.height, null);
+        g.drawImage(image, box.x+x, box.y, box.width, box.height, null);
         if (x == 0) return;
-        BufferedImage image2 = load(this.image2.getName());
-        int offest = x > 0 ? - (image2.getWidth()-x) : x + image.getWidth();
-        g.drawImage(image2, offest, 0, box.width, box.height, null);
+        BufferedImage image3 = load(this.image2.getName());
+        Box box1 = new Box(image3);
+        int offset = x > 0 ? - (image3.getWidth()-x) : x + image.getWidth();
+        g.drawImage(image3, box1.x + offset, box1.y + 0, box.width, box.height, null);
     }
     
     private BufferedImage load(String name) {
@@ -122,6 +124,7 @@ public class ImagePanel extends JPanel implements ImageDisplay{
             x = e.getX() - initial;
             if (x > 0) image2 = shift.right();
             if (x < 0) image2 = shift.left();
+            repaint();
         }
 
         @Override
