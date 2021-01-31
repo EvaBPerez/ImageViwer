@@ -9,7 +9,7 @@ public class MockImageLoader implements ImageLoader {
 
     @Override
     public List<Image> load() {        
-        List<Image> imageList = new ArrayList<Image>();
+        List<Image> imageList = new ArrayList<>();
         imageList.add(new Image("Hola"));
         imageList.add(new Image("amig@"));
         imageList.add(new Image("bienvenido"));

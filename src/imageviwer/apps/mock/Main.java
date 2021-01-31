@@ -22,12 +22,12 @@ public class Main {
         Map<String, Command> commands = initCommands(createImageDisplay());
         
         while (true) {
-            commands.getOrDefault(scanner.next(), new NullCommand()).execute();
+            commands.getOrDefault(scanner.next(), NullCommand.instance).execute();
         }
     }
     
     private static Map<String, Command> initCommands(ImageDisplay imageDisplay) {
-        List<Image> listImage = new ArrayList<Image>();
+        List<Image> listImage = new ArrayList<>();
         Map<String, Command> commands = new HashMap<>();
         ImageLoader imageLoader = new MockImageLoader();
         commands.put("q", new ExitCommand());
